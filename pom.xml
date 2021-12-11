@@ -98,7 +98,7 @@ THE POSSIBILITY OF SUCH DAMAGE.
                             <goal>shade</goal>
                         </goals>
                         <configuration>
-                            <finalName>${uberjar.name}-${javac.target}-${java.vm.version}</finalName>
+                            <finalName>${uberjar.name}</finalName>
                             <transformers>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                                     <mainClass>org.openjdk.jmh.Main</mainClass>
