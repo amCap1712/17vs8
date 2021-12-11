@@ -31,16 +31,17 @@
 
 package dev.lucifer;
 
-import org.openjdk.jmh.annotations.Benchmark;
-import org.openjdk.jmh.annotations.BenchmarkMode;
-import org.openjdk.jmh.annotations.Measurement;
-import org.openjdk.jmh.annotations.Mode;
+import org.openjdk.jmh.annotations.*;
 
 import java.util.concurrent.TimeUnit;
 
 @BenchmarkMode(Mode.AverageTime)
 @Measurement(timeUnit = TimeUnit.MICROSECONDS)
+@State(Scope.Thread)
 public class FibonacciBenchmark {
+
+    @Param({"45"})
+    private long num;
 
     static long fibonacciRecursive(long n) {
         if (n <= 1) {
@@ -65,12 +66,12 @@ public class FibonacciBenchmark {
 
     @Benchmark
     public long benchmarkFibonacciRecursive() {
-        return fibonacciRecursive(45);
+        return fibonacciRecursive(num);
     }
 
     @Benchmark
     public long benchmarkFibonacciIterative() {
-        return fibonacciIterative(45);
+        return fibonacciIterative(num);
     }
 
 }
