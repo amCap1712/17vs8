@@ -36,23 +36,41 @@ import org.openjdk.jmh.annotations.BenchmarkMode;
 import org.openjdk.jmh.annotations.Measurement;
 import org.openjdk.jmh.annotations.Mode;
 
-
 import java.util.concurrent.TimeUnit;
 
-import static dev.lucifer.Main.fibonacci;
-
 @BenchmarkMode(Mode.AverageTime)
-@Measurement(timeUnit = TimeUnit.MILLISECONDS)
+@Measurement(timeUnit = TimeUnit.MICROSECONDS)
 public class FibonacciBenchmark {
 
-    @Benchmark
-    public long testFibonacciSingle() {
-        return fibonacci(45);
+    static long fibonacciRecursive(long n) {
+        if (n <= 1) {
+            return n;
+        } else {
+            return fibonacciRecursive(n - 1) + fibonacciRecursive(n - 2);
+        }
+    }
+
+    static long fibonacciIterative(long n) {
+        long previous, current, next;
+        previous = 0;
+        current = 1;
+        next = previous + current;
+        for (long i = 3; i <= n; i++) {
+            previous = current;
+            current = next;
+            next = previous + current;
+        }
+        return next;
     }
 
     @Benchmark
-    public long testFibonacciForkJoin() {
-        return new Main.Fibonacci(45).compute();
+    public long benchmarkFibonacciRecursive() {
+        return fibonacciRecursive(45);
+    }
+
+    @Benchmark
+    public long benchmarkFibonacciIterative() {
+        return fibonacciIterative(45);
     }
 
 }
