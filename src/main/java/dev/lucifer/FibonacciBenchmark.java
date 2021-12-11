@@ -36,7 +36,7 @@ import org.openjdk.jmh.annotations.*;
 import java.util.concurrent.TimeUnit;
 
 @BenchmarkMode(Mode.AverageTime)
-@Measurement(timeUnit = TimeUnit.MICROSECONDS)
+@OutputTimeUnit(TimeUnit.MICROSECONDS)
 @State(Scope.Thread)
 public class FibonacciBenchmark {
 
