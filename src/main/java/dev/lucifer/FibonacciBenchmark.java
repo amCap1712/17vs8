@@ -66,7 +66,7 @@ public class FibonacciBenchmark {
 
     @Benchmark
     public long benchmarkFibonacciBaseline() {
-        return 45;
+        return 1134903170;
     }
 
     @Benchmark
