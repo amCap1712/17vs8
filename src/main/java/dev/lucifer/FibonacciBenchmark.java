@@ -41,7 +41,7 @@ import java.util.concurrent.TimeUnit;
 public class FibonacciBenchmark {
 
     @Param({"45"})
-    private long num;
+    long num;
 
     static long fibonacciRecursive(long n) {
         if (n <= 1) {
@@ -62,6 +62,11 @@ public class FibonacciBenchmark {
             next = previous + current;
         }
         return next;
+    }
+
+    @Benchmark
+    public long benchmarkFibonacciBaseline() {
+        return 45;
     }
 
     @Benchmark
